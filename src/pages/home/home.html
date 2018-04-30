@@ -1,14 +1,21 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
       Ionic Blank
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addMarker()">
+        <ion-icon name="md-locate"></ion-icon>
+      </button>
+    <button ion-button icon-only (click)="loadMarkers()">
+      <ion-icon name="md-refresh"></ion-icon>
+    </button>
+  </ion-buttons> 
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-</ion-content>
+
+  <ion-content>
+    <div id="map" style="width:100%; height:100%;"></div>
+  </ion-content>
+

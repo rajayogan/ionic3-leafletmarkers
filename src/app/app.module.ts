@@ -3,9 +3,24 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { NativeGeocoder, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
+
+//Firebase stuff
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule} from 'angularfire2/firestore';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { MarkersProvider } from '../providers/markers/markers';
+
+var config = {
+  apiKey: "<yourapikeyhere>",
+  authDomain: "<yourauthdomainhere>",
+  databaseURL: "<yourdatabaseURLhere>",
+  projectId: "<projectIdhere>",
+  storageBucket: "<storageBuckethere>",
+  messagingSenderId: "<yourmsgingsenderidhere>"
+};
 
 @NgModule({
   declarations: [
@@ -14,6 +29,8 @@ import { HomePage } from '../pages/home/home';
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(config),
+    AngularFirestoreModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -24,7 +41,9 @@ import { HomePage } from '../pages/home/home';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    NativeGeocoder,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    MarkersProvider
   ]
 })
 export class AppModule {}
